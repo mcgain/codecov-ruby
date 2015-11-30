@@ -145,6 +145,17 @@ class SimpleCov::Formatter::Codecov
         params[:build] = ENV['CI_BUILD_ID']
         params[:slug] = ENV['CI_BUILD_REPO'].split('/', 4)[-1].sub('.git', '')
         params[:commit] = ENV['CI_BUILD_REF']
+
+    # Buildkite
+    # ---------
+    elsif ENV['CI'] == 'true' and ENV['BUILDKITE'] == 'true'
+        # https://buildkite.com/docs/guides/environment-variables
+        params[:service] = 'buildkite'
+        params[:branch] = ENV['BUILDKITE_BRANCH']
+        params[:build] = ENV['BUILDKITE_BUILD_NUMBER']
+        params[:build_url] = ENV['BUILDKITE_BUILD_URL']
+        params[:slug] = ENV['BUILDKITE_PROJECT_SLUG']
+        params[:commit] = ENV['BUILDKITE_COMMIT']
     end
 
     if params[:branch] == nil
