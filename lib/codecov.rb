@@ -19,6 +19,9 @@ class SimpleCov::Formatter::Codecov
 
     json = report.to_json
 
+    File.write(".artifacts/codecov.io", "a+") do |f|
+      f.puts json
+    end
     # ==============
     # CI Environment
     # ==============
