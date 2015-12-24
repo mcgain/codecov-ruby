@@ -23,6 +23,10 @@ class SimpleCov::Formatter::Codecov
     File.write(".artifacts/codecov.io", "a+") do |f|
       f.puts json
     end
+    Dir.mkdir('/artifacts') unless Dir.exists?('/artifacts')
+    File.write("/artifacts/codecov.io-#{ENV['BUILDKITE_PARALLEL_JOB']}", "a+") do |f|
+      f.puts json
+    end
     # ==============
     # CI Environment
     # ==============
