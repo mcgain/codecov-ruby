@@ -20,7 +20,7 @@ class SimpleCov::Formatter::Codecov
     json = report.to_json
 
     Dir.mkdir('.artifacts') unless Dir.exists?('.artifacts')
-    File.write(".artifacts/codecov.io", "a+") do |f|
+    File.open(".artifacts/codecov.io", "a+") do |f|
       f.puts json
     end
     # ==============
