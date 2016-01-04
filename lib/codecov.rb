@@ -23,6 +23,7 @@ class SimpleCov::Formatter::Codecov
     puts "artifacts dir does not exist" if Dir.exists?('.artifacts')
     Dir.mkdir('.artifacts') unless Dir.exists?('.artifacts')
     puts "writing file: .artifacts/codecov.io current dir is #{Dir.pwd}"
+    puts json
     File.open(".artifacts/codecov.io", "a+") do |f|
       f.puts json
     end
