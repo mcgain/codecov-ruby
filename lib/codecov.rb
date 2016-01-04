@@ -19,7 +19,10 @@ class SimpleCov::Formatter::Codecov
 
     json = report.to_json
 
+    puts "artifacts dir exists" unless Dir.exists?('.artifacts')
+    puts "artifacts dir does not exist" if Dir.exists?('.artifacts')
     Dir.mkdir('.artifacts') unless Dir.exists?('.artifacts')
+    puts "writing file: .artifacts/codecov.io current dir is #{Dir.pwd}"
     File.open(".artifacts/codecov.io", "a+") do |f|
       f.puts json
     end
