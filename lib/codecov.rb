@@ -17,7 +17,7 @@ class SimpleCov::Formatter::Codecov
     }
     report.update(result_to_codecov(result))
 
-    name_changes = Hash[result.filenames.map {|key| [key, shortened_filename(key)] }]
+    name_changes = Hash[result.files.map(&:filename).map {|key| [key, shortened_filename(key)] }]
     name_changes.each { |k,v| puts "#{k} => #{v}"}
 
     json = report.to_json
